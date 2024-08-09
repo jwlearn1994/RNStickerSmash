@@ -5,17 +5,18 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as MediaLibrary from 'expo-media-library';
 import { captureRef } from 'react-native-view-shot';
 
-import ImageView from './components/ImageViewer';
-import Button from './components/Button';
-import CircleButton from './components/CircleButton';
-import IconButton from './components/IconButton';
-import EmojiPicker from './components/EmojiPicker';
-import EmojiList from './components/EmojiList';
-import EmojiSticker from './components/EmojiSticker';
+import ImageView from 'components/sticker-smash/ImageViewer';
+import CircleButton from 'components/sticker-smash/CircleButton';
+import IconButton from 'components/sticker-smash/IconButton';
+import EmojiPicker from 'components/sticker-smash/EmojiPicker';
+import EmojiList from 'components/sticker-smash/EmojiList';
+import EmojiSticker from 'components/sticker-smash/EmojiSticker';
+import Button from 'components/Button';
+import BackHomeButton from 'components/BackHomeButton';
 
-import useImagePicker from './hooks/useImagePicker';
+import useImagePicker from 'hooks/useImagePicker';
 
-const PlaceholderImage = require('./assets/images/background-image.png');
+const PlaceholderImage = require('assets/images/background-image.png');
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -96,6 +97,7 @@ export default function App() {
         <View style={styles.footerContainer}>
           <Button theme="primary" label="Choose a photo" onPress={handleChoosePhoto} />
           <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
+          <BackHomeButton />
         </View>
       )}
 
