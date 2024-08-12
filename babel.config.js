@@ -7,9 +7,11 @@ module.exports = function(api) {
         require.resolve('babel-plugin-module-resolver'),
         {
           alias: {
-            "components": "./components",
-            "hooks": "./hooks",
-            "assets": "./assets",
+            "components": "./src/components",
+            "containers": "./src/containers",
+            "hooks": "./src/hooks",
+            "lib": "./src/lib",
+            "assets": "./src/assets",
           }
         }
       ]

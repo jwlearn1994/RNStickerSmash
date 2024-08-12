@@ -5,7 +5,7 @@ import { Link } from 'expo-router';
 
 const pages = [
   'sticker-smash',
-  'onboarding/carousel',
+  'onboarding',
 ];
 
 export default function App() {

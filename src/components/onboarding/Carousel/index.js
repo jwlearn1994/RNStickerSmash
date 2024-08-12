@@ -1,13 +1,20 @@
 // https://www.youtube.com/watch?v=r2NJJye0XnM
-import { useRef } from 'react';
+import { useState, useRef, forwardRef, createRef } from 'react';
 import Animated from 'react-native-reanimated';
 
-export default function Carousel({
+import CarouselItem from './CarouselItem';
+import Paginator from './Paginator';
+import NextButton from './NextButton';
+
+const Carousel = forwardRef(function Carousel({
   slides,
   renderSlide,
   onScroll = () => {},
   onChange = () => {},
-}) {
+}, ref) {
+  const [componentRef] = useState(() => ref || createRef());
+
+  // props for the onViewableItemsChanged callback
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     if (viewableItems.length) {
       onChange(viewableItems[0].index);
@@ -21,9 +28,10 @@ export default function Carousel({
 
   return (
     <Animated.FlatList
+      ref={componentRef}
       horizontal
-      showsHorizontalScrollIndicator
       pagingEnabled
+      showsHorizontalScrollIndicator={false}
       bounces={false}
       scrollEventThrottle={32}
       keyExtractor={(item) => item.id}
@@ -34,4 +42,10 @@ export default function Carousel({
       onViewableItemsChanged={viewableItemsChanged}
     />
   );
-}
+})
+
+Carousel.SlideItem = CarouselItem;
+Carousel.Paginator = Paginator;
+Carousel.NextButton = NextButton;
+
+export default Carousel;
